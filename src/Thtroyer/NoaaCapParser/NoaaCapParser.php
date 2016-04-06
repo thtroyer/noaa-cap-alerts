@@ -50,9 +50,6 @@ class NoaaCapParser
 
         // Loop through attributes and set values
         foreach($alert['children'] as $element){
-            echo 'element: ';
-            var_dump($alert);
-            echo "\n";
             $elementName = $element['name'];
             $elementAttrs = $element['attrs'];
             if(isset($element['tagData'])){
