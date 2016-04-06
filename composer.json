@@ -1,0 +1,15 @@
+{
+    "name": "thtroyer/noaa-cap-parser",
+    "type": "library",
+    "description": "",
+    "homepage": "https://github.com/thtroyer/noaa-cap-parser",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    }
+}
