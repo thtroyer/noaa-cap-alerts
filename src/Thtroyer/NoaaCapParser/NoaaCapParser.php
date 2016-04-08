@@ -2,21 +2,46 @@
 
 namespace Thtroyer\NoaaCapParser;
 
+use Thtroyer\NoaaCapParser\Utilities\XmlParser;
+
 class NoaaCapParser
 {
+    protected $xmlParser;
+    protected $resultArray;
 
-    public function parse(array $alertDataArray)
+    function __construct($xmlParser = null)
     {
-        $returnArray = array();
+        $this->xmlParser = $xmlParser;
+
+        if($xmlParser === null) {
+            $this->xmlParser = new XmlParser();
+        }
+    }
+
+    public function parseFromXml($xml)
+    {
+        // parse XML into an array of alerts
+        $rawDataArray = $this->xmlParser->getArrayFromXml($xml);
+        $alertDataArray = $rawDataArray[0]['children'];
+
+        // Process each alert ("ENTRY")
+        $resultArray = array();
 
         foreach($alertDataArray as $alert) {
             $parsedAlert = $this->parseAlert($alert);
             if($parsedAlert !== null) {
-                $returnArray[] = $parsedAlert;
+                $resultArray[] = $parsedAlert;
             }
         }
 
-        return $returnArray;
+        $this->resultArray = $resultArray;
+
+        return $resultArray;
+    }
+
+    public function getResultArray()
+    {
+        return $resultArray;
     }
 
     protected function parseAlert(array $alert)
