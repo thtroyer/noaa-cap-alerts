@@ -145,7 +145,6 @@ class NoaaCapParser
                     $capPolygon = explode(' ', $capPolygonString);
                     break;
                 case 'CAP:GEOCODE':
-                    $capGeo = '';
                     $geoArray = array();
 
                     // parse into simple array
@@ -155,23 +154,7 @@ class NoaaCapParser
                         }
                     }
 
-                    // organize array by format type
-                    $locationFormatTypes = array(
-                        'FIPS6',
-                        'UGC',
-                    );
-
-                    $currentLocationKey = 'null';
-                    $geoLocArray = array();
-
-                    foreach($geoArray as $geoLoc) {
-                        if(in_array($geoLoc, $locationFormatTypes)) {
-                            $currentLocationKey = $geoLoc;
-                            $geoLocArray[$geoLoc] = array();
-                        } else {
-                            $geoLocArray[$currentLocationKey] = explode(' ', $geoLoc);
-                        }
-                    }
+                    $geoLocArray = $this->parseGeoArray($geoArray);
 
                     $capGeoString = implode(', ', $geoArray);
                     $capGeo = $geoLocArray;
@@ -234,4 +217,26 @@ class NoaaCapParser
 
         return $alert;
     }
+
+    protected function parseGeoArray($geoArray)
+    {
+        // organize array by format type
+        $locationFormatTypes = array(
+            'FIPS6',
+            'UGC',
+        );
+
+        $currentLocationKey = 'null';
+        $geoLocArray = array();
+
+        foreach($geoArray as $geoLoc) {
+            if(in_array($geoLoc, $locationFormatTypes)) {
+                $currentLocationKey = $geoLoc;
+                $geoLocArray[$geoLoc] = array();
+            } else {
+                $geoLocArray[$currentLocationKey] = explode(' ', $geoLoc);
+            }
+        }
+    }
+
 }
