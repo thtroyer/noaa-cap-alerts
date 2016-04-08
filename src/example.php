@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 ini_set('default_socket_timeout', 120);
 
