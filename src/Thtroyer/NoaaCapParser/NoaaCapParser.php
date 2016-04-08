@@ -66,7 +66,8 @@ class NoaaCapParser
         $capCertainty = '';
         $capAreaDesc = '';
         $capPolygon = '';
-        $capGeo = '';
+        $capGeo = array();
+        $capGeoString = '';
         $capParameters = '';
 
         if(!isset($alert['name']) || $alert['name'] != 'ENTRY') {
@@ -140,17 +141,40 @@ class NoaaCapParser
                     $capAreaDesc = $elementData;
                     break;
                 case 'CAP:POLYGON':
-                    $capPolygon = $elementData;
+                    $capPolygonString = $elementData;
+                    $capPolygon = explode(' ', $capPolygonString);
                     break;
                 case 'CAP:GEOCODE':
                     $capGeo = '';
                     $geoArray = array();
-                    foreach($element['children'] as $geo){
-                        if(isset($geo['tagData'])){
+
+                    // parse into simple array
+                    foreach($element['children'] as $geo) {
+                        if(isset($geo['tagData'])) {
                             $geoArray[] = $geo['tagData'];
                         }
                     }
-                    $capGeo = implode(', ', $geoArray);
+
+                    // organize array by format type
+                    $locationFormatTypes = array(
+                        'FIPS6',
+                        'UGC',
+                    );
+
+                    $currentLocationKey = 'null';
+                    $geoLocArray = array();
+
+                    foreach($geoArray as $geoLoc) {
+                        if(in_array($geoLoc, $locationFormatTypes)) {
+                            $currentLocationKey = $geoLoc;
+                            $geoLocArray[$geoLoc] = array();
+                        } else {
+                            $geoLocArray[$currentLocationKey] = explode(' ', $geoLoc);
+                        }
+                    }
+
+                    $capGeoString = implode(', ', $geoArray);
+                    $capGeo = $geoLocArray;
                     break;
                 case 'CAP:PARAMETERS':
                     $capParameters  = '';
@@ -202,6 +226,7 @@ class NoaaCapParser
                 'capAreaDesc' => $capAreaDesc,
                 'capPolygon' => $capPolygon,
                 'capGeo' => $capGeo,
+                'capGeoString' => $capGeoString,
                 'capParameters' => $capParameters,
             );
 
