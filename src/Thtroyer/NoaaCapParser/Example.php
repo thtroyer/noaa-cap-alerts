@@ -5,7 +5,13 @@ namespace Thtroyer\NoaaCapParser;
 use Thtroyer\NoaaCapParser\Utilities\XmlParser;
 use Thtroyer\NoaaCapParser\NoaaCapParser;
 
-class Runner
+/**
+ * Simple example class to set up dependencies of the 
+ *   NoaaCapParser, fetch an XML file from NOAA, and 
+ *   print the results to console.  Simply instantiate
+ *   the class and call run().
+ */
+class Example
 {
     protected $noaaCapParser;
 
