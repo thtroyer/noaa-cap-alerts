@@ -1,8 +1,8 @@
 <?php
 
-namespace Thtroyer\NoaaCapParser\Utilities;
+namespace NoaaCapParser\Utilities;
 
-use Thtroyer\NoaaCapParser\Exceptions\XmlParseException;
+use NoaaCapParser\Exceptions\XmlParseException;
 
 /**
  * Uses php's xml_parse to create a php array

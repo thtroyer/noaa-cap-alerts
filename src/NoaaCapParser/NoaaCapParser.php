@@ -1,8 +1,8 @@
 <?php
 
-namespace Thtroyer\NoaaCapParser;
+namespace NoaaCapParser;
 
-use Thtroyer\NoaaCapParser\Utilities\XmlParser;
+use NoaaCapParser\Utilities\XmlParser;
 
 class NoaaCapParser
 {

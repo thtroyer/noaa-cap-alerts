@@ -1,6 +1,6 @@
 <?php
 
-namespace Thtroyer\NoaaCapParser\Exceptions;
+namespace NoaaCapParser\Exceptions;
 
 class XmlParseException extends \Exception {}
 

@@ -9,7 +9,13 @@
     },
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "NoaaCapParser\\": "src/NoaaCapParser"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NoaaCapParser\\Tests\\": "tests/"
         }
     }
+
 }

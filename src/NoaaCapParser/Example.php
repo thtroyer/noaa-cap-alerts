@@ -1,9 +1,9 @@
 <?php
 
-namespace Thtroyer\NoaaCapParser;
+namespace NoaaCapParser;
 
-use Thtroyer\NoaaCapParser\Utilities\XmlParser;
-use Thtroyer\NoaaCapParser\NoaaCapParser;
+use NoaaCapParser\Utilities\XmlParser;
+use NoaaCapParser\NoaaCapParser;
 
 /**
  * Simple example class to set up dependencies of the 
