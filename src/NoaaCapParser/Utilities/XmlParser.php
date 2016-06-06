@@ -29,7 +29,7 @@ class XmlParser {
         xml_set_element_handler($xmlParser, "tagOpen", "tagClosed");
         xml_set_character_data_handler($xmlParser, "tagData");
 
-        $successfulParse = xml_parse($xmlParser,$xml);
+        $successfulParse = xml_parse($xmlParser, $xml, true);
 
         if($successfulParse === 0) {
             $errorString = xml_error_string(xml_get_error_code($xmlParser));
@@ -41,11 +41,6 @@ class XmlParser {
         xml_parser_free($xmlParser);
 
         return $this->output;
-    }
-
-    protected function appendData($data)
-    {
-        array_push($this->output,$tag);
     }
 
     protected function tagOpen($parser, $name, $attrs)
@@ -70,11 +65,7 @@ class XmlParser {
         $notWhitespace = !empty(trim($tagData));
 
         if($notWhitespace) {
-            if(isset($this->output[count($this->output) - 1]['tagData'])) {
-                $this->output[count($this->output) - 1]['tagData'] .= $tagData;
-            } else {
-                $this->output[count($this->output) - 1]['tagData'] = $tagData;
-            }
+            $this->output[count($this->output) - 1]['tagData'] = $tagData;
         }
     }
 }
