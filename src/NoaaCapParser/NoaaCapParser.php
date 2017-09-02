@@ -4,12 +4,20 @@ namespace NoaaCapParser;
 
 use NoaaCapParser\Utilities\XmlParser;
 
+/**
+ * Class NoaaCapParser
+ * @package NoaaCapParser
+ */
 class NoaaCapParser
 {
     protected $xmlParser;
     protected $resultArray;
 
-    function __construct($xmlParser = null)
+    /**
+     * NoaaCapParser constructor.
+     * @param XmlParser|null $xmlParser
+     */
+    function __construct(XmlParser $xmlParser = null)
     {
         $this->xmlParser = $xmlParser;
 
@@ -18,7 +26,11 @@ class NoaaCapParser
         }
     }
 
-    public function parseFromXml($xml)
+    /**
+     * @param string $xml
+     * @return array
+     */
+    public function parseFromXml(string $xml) : array
     {
         // parse XML into an array of alerts
         $rawDataArray = $this->xmlParser->getArrayFromXml($xml);
@@ -39,12 +51,19 @@ class NoaaCapParser
         return $resultArray;
     }
 
-    public function getResultArray()
+    /**
+     * @return array
+     */
+    public function getResultArray() : array
     {
-        return $resultArray;
+        return $this->resultArray;
     }
 
-    protected function parseAlert(array $alert)
+    /**
+     * @param array $alert
+     * @return array
+     */
+    protected function parseAlert(array $alert) : array
     {
         //set default attributes
         $idString = '';
@@ -155,7 +174,6 @@ class NoaaCapParser
                     }
 
                     $geoLocArray = $this->parseGeoArray($geoArray);
-
                     $capGeoString = implode(', ', $geoArray);
                     $capGeo = $geoLocArray;
                     break;
@@ -188,7 +206,7 @@ class NoaaCapParser
             $idSplit = explode('.', $idParts[1]);
             $idKey = $idSplit[0] . '.' . $idSplit[4];
 
-            $alert = array(
+            $parsedAlert = array(
                 'idString' => $idString,
                 'idKey' => $idKey,
                 'updatedTime' => $updatedTime,
@@ -215,10 +233,14 @@ class NoaaCapParser
 
         }
 
-        return $alert;
+        return $parsedAlert;
     }
 
-    protected function parseGeoArray($geoArray)
+    /**
+     * @param array $geoArray
+     * @return array
+     */
+    protected function parseGeoArray(array $geoArray) : array
     {
         // organize array by format type
         $locationFormatTypes = array(
@@ -237,6 +259,8 @@ class NoaaCapParser
                 $geoLocArray[$currentLocationKey] = explode(' ', $geoLoc);
             }
         }
+
+        return $geoLocArray;
     }
 
 }
