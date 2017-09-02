@@ -5,7 +5,7 @@ namespace NoaaCapParser\Tests\Utilities;
 use NoaaCapParser\Utilities\XmlParser;
 use NoaaCapParser\Exceptions\XmlParseException;
 
-class XmlParserTest extends \PHPUnit_Framework_TestCase
+class XmlParserTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

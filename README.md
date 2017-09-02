@@ -8,4 +8,4 @@ More information about NOAA's CAP format is available [here](http://alerts.weath
 
 This project should be considered unstable and currently a work in progress.  I'll tag versions as they become stable.
 
-Feel free to use the functionality in the mean time.  There is currently an example of how to use the classes as they are set up now (see Runner.php), but be aware that this usage may change in the future.
+Feel free to use the functionality in the mean time.  There is currently an example of how to use the classes as they are set up now (see example.php), but be aware that this usage may change in the future.
