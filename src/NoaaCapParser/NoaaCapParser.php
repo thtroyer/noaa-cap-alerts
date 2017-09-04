@@ -63,7 +63,7 @@ class NoaaCapParser
      * @param array $alert
      * @return array
      */
-    protected function parseAlert(array $alert) : array
+    protected function parseAlert(array $alert)
     {
         //set default attributes
         $idString = '';
