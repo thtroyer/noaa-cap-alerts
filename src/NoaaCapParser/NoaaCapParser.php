@@ -30,7 +30,7 @@ class NoaaCapParser
      * @param string $xml
      * @return array
      */
-    public function parseFromXml(string $xml) : array
+    public function parse(string $xml) : array
     {
         // parse XML into an array of alerts
         $rawDataArray = $this->xmlParser->getArrayFromXml($xml);
@@ -61,7 +61,7 @@ class NoaaCapParser
 
     /**
      * @param array $alert
-     * @return array
+     * @return array|null
      */
     protected function parseAlert(array $alert)
     {
@@ -69,7 +69,6 @@ class NoaaCapParser
         $idString = '';
         $updatedTime = '';
         $publishedTime = '';
-        $elementData = '';
         $authorName = '';
         $title = '';
         $link = '';
