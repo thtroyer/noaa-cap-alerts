@@ -11,7 +11,6 @@ use NoaaCapParser\Utilities\XmlParser;
 class NoaaCapParser
 {
     protected $xmlParser;
-    protected $resultArray;
 
     /**
      * NoaaCapParser constructor.
@@ -46,17 +45,7 @@ class NoaaCapParser
             }
         }
 
-        $this->resultArray = $resultArray;
-
         return $resultArray;
-    }
-
-    /**
-     * @return array
-     */
-    public function getResultArray() : array
-    {
-        return $this->resultArray;
     }
 
     /**
