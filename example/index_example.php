@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 /**
- * Usage: php -f example/simple_example.php
+ * Usage: php -f example/index_example.php
  */
 
 ini_set('default_socket_timeout', 120);
@@ -18,7 +18,7 @@ $context = stream_context_create($options);
 $xml = file_get_contents('http://alerts.weather.gov/cap/us.php?x=0', false, $context);
 
 // Use library to parse file
-$noaaCapParser = new NoaaCapParser\NoaaCapParser();
+$noaaCapParser = new NoaaCapParser\Parser\IndexParser();
 $alertArray = $noaaCapParser->parse($xml);
 
 print_r($alertArray);

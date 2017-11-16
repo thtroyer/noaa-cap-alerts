@@ -1,19 +1,17 @@
 <?php
 
-namespace NoaaCapParser;
-
-use NoaaCapParser\Utilities\XmlParser;
+namespace NoaaCapParser\Parser;
 
 /**
- * Class NoaaCapParser
- * @package NoaaCapParser
+ * Class IndexParser
+ * @package IndexParser
  */
-class NoaaCapParser
+class IndexParser
 {
     protected $xmlParser;
 
     /**
-     * NoaaCapParser constructor.
+     * IndexParser constructor.
      * @param XmlParser|null $xmlParser
      */
     function __construct(XmlParser $xmlParser = null)

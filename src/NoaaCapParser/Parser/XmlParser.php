@@ -1,6 +1,6 @@
 <?php
 
-namespace NoaaCapParser\Utilities;
+namespace NoaaCapParser\Parser;
 
 use NoaaCapParser\Exceptions\XmlParseException;
 

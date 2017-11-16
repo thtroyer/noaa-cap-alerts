@@ -1,7 +1,7 @@
 <?php
 namespace NoaaCapParser\Tests;
 
-use NoaaCapParser\NoaaCapParser;
+use NoaaCapParser\Parser\IndexParser;
 use NoaaCapParser\Exceptions\XmlParseException;
 
 class XmlParserTest extends \PHPUnit\Framework\TestCase
@@ -12,15 +12,15 @@ class XmlParserTest extends \PHPUnit\Framework\TestCase
         $this->expectException(XmlParseException::class);
 
         $xml = '';
-        $parser = new NoaaCapParser();
+        $parser = new IndexParser();
 
         $parser->parse($xml);
     }
 
     public function testSimpleRequest()
     {
-        $xml = file_get_contents(__DIR__ . '/../noaaExampleSmall.xml');
-        $parser = new NoaaCapParser();
+        $xml = file_get_contents(__DIR__ . '/../../noaaExampleSmall.xml');
+        $parser = new IndexParser();
         $result = $parser->parse($xml);
 
         $expectedResult = array(
