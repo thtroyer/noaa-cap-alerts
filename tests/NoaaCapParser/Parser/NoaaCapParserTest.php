@@ -1,8 +1,8 @@
 <?php
 namespace NoaaCapParser\Tests;
 
-use NoaaCapParser\Parser\IndexParser;
 use NoaaCapParser\Exceptions\XmlParseException;
+use NoaaCapParser\Repository\Parser\IndexParser;
 
 class XmlParserTest extends \PHPUnit\Framework\TestCase
 {
