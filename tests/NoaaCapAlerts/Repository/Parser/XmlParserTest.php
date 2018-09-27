@@ -1,6 +1,6 @@
 <?php
 
-namespace NoaaCapAlerts\Tests\Utilities;
+namespace NoaaCapAlerts\Tests\Repository\Parser;
 
 use NoaaCapAlerts\Repository\Parser\XmlParser;
 use NoaaCapAlerts\Exceptions\XmlParseException;

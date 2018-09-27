@@ -2,8 +2,6 @@
 
 namespace NoaaCapAlerts\Repository\XmlProvider;
 
-use NoaaCapAlerts\Repository\Parser\DetailParser;
-
 class DownloaderProvider implements XmlProvider
 {
     protected $detailParser;

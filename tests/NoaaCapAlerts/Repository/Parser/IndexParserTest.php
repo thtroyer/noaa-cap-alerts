@@ -1,10 +1,10 @@
 <?php
-namespace NoaaCapAlerts\Tests;
+namespace NoaaCapAlerts\Tests\Repository\Parser;
 
 use NoaaCapAlerts\Exceptions\XmlParseException;
 use NoaaCapAlerts\Repository\Parser\IndexParser;
 
-class XmlParserTest extends \PHPUnit\Framework\TestCase
+class IndexParserTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testEmptyRequest()
