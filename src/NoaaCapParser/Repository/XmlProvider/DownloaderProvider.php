@@ -1,47 +1,21 @@
 <?php
 
-namespace NoaaCapParser\Repository;
+namespace NoaaCapParser\Repository\XmlProvider;
 
 use NoaaCapParser\Repository\Parser\DetailParser;
-use NoaaCapParser\Repository\Parser\IndexParser;
-use NoaaCapParser\Repository\XmlProvider\XmlProviderInterface;
 
-class DownloaderProvider implements XmlProviderInterface
+class DownloaderProvider implements XmlProvider
 {
     protected $detailParser;
     protected $indexParser;
     protected $indexUrl;
 
-    function __construct(DetailParser $detailParser, IndexParser $indexParser, string $indexUrl = 'http://alerts.weather.gov/cap/us.php?x=0')
+    function __construct(string $indexUrl = 'http://alerts.weather.gov/cap/us.php?x=0')
     {
         $this->indexUrl = $indexUrl;
-        $this->detailParser = $detailParser;
-        $this->indexParser = $indexParser;
     }
 
-    public function downloadParsedIndex() : array
-    {
-        $alertArray = $this->indexParser->parse($this->indexUrl);
-
-        return $alertArray;
-    }
-
-    public function downloadParsedDetails() : array
-    {
-        $alerts = $this->downloadParsedIndex();
-
-        $detailedAlerts = array();
-        foreach ($alerts as $alert) {
-            $url = $alert['id'];
-
-            $xml = $this->downloadXml($url);
-            $detailedAlerts[] = $this->detailParser->parse($xml);
-        }
-
-        return $detailedAlerts;
-    }
-
-    protected function downloadXml($url)
+    public function getXml() : string
     {
         $options = array(
             'http' => array(
@@ -50,7 +24,7 @@ class DownloaderProvider implements XmlProviderInterface
         );
 
         $context = stream_context_create($options);
-        $xml = file_get_contents( $url,false, $context);
+        $xml = file_get_contents($this->indexUrl,false, $context);
 
         return $xml;
     }

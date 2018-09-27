@@ -2,7 +2,11 @@
 
 namespace NoaaCapParser\Repository\XmlProvider;
 
-class FileProvider implements XmlProviderInterface
+class FileProvider implements XmlProvider
 {
-
+    public function getXml(): string
+    {
+        //@todo
+        return "";
+    }
 }

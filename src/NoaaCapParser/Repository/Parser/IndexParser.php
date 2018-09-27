@@ -75,6 +75,11 @@ class IndexParser
         $capGeoString = '';
         $capParameters = '';
 
+        $updatedDateTime = null;
+        $publishedDateTime = null;
+        $expiresDateTime = null;
+        $effectiveDateTime = null;
+
         if(!isset($alert['name']) || $alert['name'] != 'ENTRY') {
             return null;
         }
@@ -88,6 +93,7 @@ class IndexParser
             } else {
                 $elementData = '';
             }
+
 
             switch($elementName){
                 case 'ID':
@@ -195,6 +201,8 @@ class IndexParser
             $parsedAlert = array(
                 'idString' => $idString,
                 'idKey' => $idKey,
+                'updatedDateTime' => $updatedDateTime,
+                'publishedDateTime' => $publishedDateTime,
                 'updatedTime' => $updatedTime,
                 'publishedTime' => $publishedTime,
                 'authorName' => $authorName,
@@ -204,6 +212,8 @@ class IndexParser
                 'capEvent' => $capEvent,
                 'capEffectiveTime' => $capEffectiveTime,
                 'capExpiresTime' => $capExpiresTime,
+                'capEffectiveDateTime' => $effectiveDateTime,
+                'capExpiresDateTime' => $expiresDateTime,
                 'capStatus' => $capStatus,
                 'capMsgType' => $capMsgType,
                 'capCategory' => $capCategory,
