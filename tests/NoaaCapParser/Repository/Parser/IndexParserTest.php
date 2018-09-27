@@ -19,7 +19,7 @@ class XmlParserTest extends \PHPUnit\Framework\TestCase
 
     public function testSimpleRequest()
     {
-        $xml = file_get_contents(__DIR__ . '/../../noaaExampleSmall.xml');
+        $xml = file_get_contents(__DIR__ . '/../../../files/noaaExampleSmall.xml');
         $parser = new IndexParser();
         $result = $parser->parse($xml);
 
@@ -61,6 +61,12 @@ class XmlParserTest extends \PHPUnit\Framework\TestCase
                 ),
                 'capGeoString' => 'FIPS6, 002090 002240 002290, UGC, AKZ221 AKZ222 AKZ223 AKZ224',
                 'capParameters' => '',
+                'updatedDateTime' => new \DateTime('2017-09-01T19:12:00-08:00'),
+                'publishedDateTime' => new \DateTime('2017-09-01T19:12:00-08:00'),
+                'capEffectiveDateTime' => new \DateTime('2017-09-01T19:12:00-08:00'),
+                'capExpiresDateTime' => new \DateTime('2017-09-01T22:00:00-08:00'),
+
+
             ),
         );
 
