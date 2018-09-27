@@ -6,11 +6,11 @@
  * Time: 10:16 PM
  */
 
-namespace NoaaCapParser\Repository\Model;
+namespace NoaaCapAlerts\Repository\Model;
 
 
-use NoaaCapParser\Repository\Parser\IndexParser;
-use NoaaCapParser\Repository\XmlProvider\XmlProvider;
+use NoaaCapAlerts\Repository\Parser\IndexParser;
+use NoaaCapAlerts\Repository\XmlProvider\XmlProvider;
 
 class NoaaAlertManager
 {

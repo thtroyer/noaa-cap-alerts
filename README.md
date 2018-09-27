@@ -4,4 +4,4 @@ This is a PHP library to fetch and parse NOAA's CAP (XML) format into a format t
 
 More information about NOAA's CAP format is available [here](http://alerts.weather.gov/).
 
-For example usage, see example/simple_example.php.
+For example usage, see example/index_example.php.

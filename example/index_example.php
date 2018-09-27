@@ -1,6 +1,6 @@
 <?php
 
-use NoaaCapParser\NoaaAlerts;
+use NoaaCapAlerts\NoaaAlerts;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

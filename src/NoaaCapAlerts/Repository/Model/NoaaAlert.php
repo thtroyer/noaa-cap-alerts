@@ -1,6 +1,6 @@
 <?php
 
-namespace NoaaCapParser\Repository\Model;
+namespace NoaaCapAlerts\Repository\Model;
 
 class NoaaAlert
 {

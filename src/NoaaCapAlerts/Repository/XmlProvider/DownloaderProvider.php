@@ -1,8 +1,8 @@
 <?php
 
-namespace NoaaCapParser\Repository\XmlProvider;
+namespace NoaaCapAlerts\Repository\XmlProvider;
 
-use NoaaCapParser\Repository\Parser\DetailParser;
+use NoaaCapAlerts\Repository\Parser\DetailParser;
 
 class DownloaderProvider implements XmlProvider
 {

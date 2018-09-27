@@ -1,8 +1,8 @@
 {
-    "name": "thtroyer/noaa-cap-parser",
+    "name": "thtroyer/noaa-cap-alerts",
     "type": "library",
     "description": "Parser for NOAA CAP files.",
-    "homepage": "https://github.com/thtroyer/noaa-cap-parser",
+    "homepage": "https://github.com/thtroyer/noaa-cap-alerts",
     "license": "MIT",
     "require": {
         "php": ">=7.1",
@@ -13,12 +13,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NoaaCapParser\\": "src/NoaaCapParser"
+            "NoaaCapAlerts\\": "src/NoaaCapAlerts"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NoaaCapParser\\Tests\\": "tests/"
+            "NoaaCapAlerts\\Tests\\": "tests/"
         }
     }
 

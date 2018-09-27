@@ -1,6 +1,6 @@
 <?php
 
-namespace NoaaCapParser\Repository\Parser;
+namespace NoaaCapAlerts\Repository\Parser;
 
 /**
  * Class IndexParser
