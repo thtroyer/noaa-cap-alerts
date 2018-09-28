@@ -1,7 +1,12 @@
 # thtroyer/noaa-cap-alerts
 
-[![Build Status](https://travis-ci.org/thtroyer/noaa-cap-alerts.svg?branch=master)](https://travis-ci.org/thtroyer/noaa-cap-alerts)
-[![codecov](https://codecov.io/gh/thtroyer/noaa-cap-alerts/branch/master/graph/badge.svg)](https://codecov.io/gh/thtroyer/noaa-cap-alerts)
+[![Build Status](https://scrutinizer-ci.com/g/thtroyer/noaa-cap-alerts/badges/build.png?b=master)](https://scrutinizer-ci.com/g/thtroyer/noaa-cap-alerts/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/thtroyer/noaa-cap-alerts/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/thtroyer/noaa-cap-alerts/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thtroyer/noaa-cap-alerts/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/thtroyer/noaa-cap-alerts/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/thtroyer/noaa-cap-alerts/version)](https://packagist.org/packages/thtroyer/noaa-cap-alerts)
+[![Latest Unstable Version](https://poser.pugx.org/thtroyer/noaa-cap-alerts/v/unstable)](//packagist.org/packages/thtroyer/noaa-cap-alerts)
+[![License](https://poser.pugx.org/thtroyer/noaa-cap-alerts/license)](https://packagist.org/packages/thtroyer/noaa-cap-alerts)
+[![Total Downloads](https://poser.pugx.org/thtroyer/noaa-cap-alerts/downloads)](https://packagist.org/packages/thtroyer/noaa-cap-alerts)
 
 ## What is this?
 This is a PHP 7.1+ library to make it easier to fetch and use weather alerts created by NOAA.
