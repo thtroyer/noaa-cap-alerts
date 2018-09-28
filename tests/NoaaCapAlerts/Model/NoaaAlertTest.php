@@ -1,8 +1,8 @@
 <?php
 
-namespace NoaaCapAlerts\Tests\Repository\Model;
+namespace NoaaCapAlerts\Tests\Model;
 
-use NoaaCapAlerts\Repository\Model\NoaaAlert;
+use NoaaCapAlerts\Model\NoaaAlert;
 
 class NoaaAlertTest extends \PHPUnit\Framework\TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace NoaaCapAlerts\Repository\XmlProvider;
+namespace NoaaCapAlerts\XmlProvider;
 
 class FileProvider implements XmlProvider
 {

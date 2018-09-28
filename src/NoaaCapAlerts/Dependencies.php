@@ -2,10 +2,10 @@
 
 namespace NoaaCapAlerts;
 
-use NoaaCapAlerts\Repository\Model\NoaaAlertManager;
-use NoaaCapAlerts\Repository\Parser\IndexParser;
-use NoaaCapAlerts\Repository\Parser\XmlParser;
-use NoaaCapAlerts\Repository\XmlProvider\DownloaderProvider;
+use NoaaCapAlerts\Model\NoaaAlertManager;
+use NoaaCapAlerts\Parser\IndexParser;
+use NoaaCapAlerts\Parser\XmlParser;
+use NoaaCapAlerts\XmlProvider\DownloaderProvider;
 use Pimple\Container;
 
 class Dependencies extends Container

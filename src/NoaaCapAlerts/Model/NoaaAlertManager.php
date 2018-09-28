@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tom
- * Date: 9/26/18
- * Time: 10:16 PM
- */
 
-namespace NoaaCapAlerts\Repository\Model;
+namespace NoaaCapAlerts\Model;
 
 
-use NoaaCapAlerts\Repository\Parser\IndexParser;
-use NoaaCapAlerts\Repository\XmlProvider\XmlProvider;
+use NoaaCapAlerts\Parser\IndexParser;
+use NoaaCapAlerts\XmlProvider\XmlProvider;
 
 class NoaaAlertManager
 {
@@ -29,8 +23,6 @@ class NoaaAlertManager
         $alertData = $this->indexParser->parse($this->xmlProvider->getXml());
 
         foreach ($alertData as $data) {
-            echo "\n";
-            print_r($data);
             $alert = new NoaaAlert(
                 $data['idString'],
                 $data['idKey'],

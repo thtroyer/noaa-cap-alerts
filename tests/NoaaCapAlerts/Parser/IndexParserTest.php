@@ -1,8 +1,8 @@
 <?php
-namespace NoaaCapAlerts\Tests\Repository\Parser;
+namespace NoaaCapAlerts\Tests\Parser;
 
 use NoaaCapAlerts\Exceptions\XmlParseException;
-use NoaaCapAlerts\Repository\Parser\IndexParser;
+use NoaaCapAlerts\Parser\IndexParser;
 
 class IndexParserTest extends \PHPUnit\Framework\TestCase
 {
@@ -19,7 +19,7 @@ class IndexParserTest extends \PHPUnit\Framework\TestCase
 
     public function testSimpleRequest()
     {
-        $xml = file_get_contents(__DIR__ . '/../../../files/noaaExampleSmall.xml');
+        $xml = file_get_contents(__DIR__ . '/../../files/noaaExampleSmall.xml');
         $parser = new IndexParser();
         $result = $parser->parse($xml);
 

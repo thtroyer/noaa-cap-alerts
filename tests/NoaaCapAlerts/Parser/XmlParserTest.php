@@ -1,8 +1,8 @@
 <?php
 
-namespace NoaaCapAlerts\Tests\Repository\Parser;
+namespace NoaaCapAlerts\Tests\Parser;
 
-use NoaaCapAlerts\Repository\Parser\XmlParser;
+use NoaaCapAlerts\Parser\XmlParser;
 use NoaaCapAlerts\Exceptions\XmlParseException;
 
 class XmlParserTest extends \PHPUnit\Framework\TestCase
