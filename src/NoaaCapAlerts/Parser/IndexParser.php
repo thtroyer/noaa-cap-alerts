@@ -2,6 +2,8 @@
 
 namespace NoaaCapAlerts\Parser;
 
+use NoaaCapAlerts\Exceptions\XmlParseException;
+
 /**
  * Class IndexParser
  * @package IndexParser
@@ -10,10 +12,6 @@ class IndexParser
 {
     protected $xmlParser;
 
-    /**
-     * IndexParser constructor.
-     * @param XmlParser|null $xmlParser
-     */
     function __construct(XmlParser $xmlParser = null)
     {
         $this->xmlParser = $xmlParser;
@@ -23,10 +21,6 @@ class IndexParser
         }
     }
 
-    /**
-     * @param string $xml
-     * @return array
-     */
     public function parse(string $xml) : array
     {
         // parse XML into an array of alerts
@@ -37,52 +31,53 @@ class IndexParser
         $resultArray = array();
 
         foreach($alertDataArray as $alert) {
-            $parsedAlert = $this->parseAlert($alert);
-            if($parsedAlert !== null) {
-                $resultArray[] = $parsedAlert;
+            if (!$this->isAlert($alert)) {
+                continue;
             }
+
+            $parsedAlert = $this->parseAlert($alert);
+
+            $resultArray[] = $parsedAlert;
         }
 
         return $resultArray;
     }
 
-    /**
-     * @param array $alert
-     * @return array|null
-     */
-    protected function parseAlert(array $alert)
+    protected function isAlert(array $alert) : bool
     {
-        //set default attributes
-        $idString = '';
-        $updatedTime = '';
-        $publishedTime = '';
-        $authorName = '';
-        $title = '';
-        $link = '';
-        $summary = '';
-        $capEvent = '';
-        $capEffectiveTime = '';
-        $capExpiresTime = '';
-        $capStatus = '';
-        $capMsgType = '';
-        $capCategory = '';
-        $capUrgencyExpected = '';
-        $capSeverity = '';
-        $capCertainty = '';
-        $capAreaDesc = '';
-        $capPolygon = '';
-        $capGeo = array();
-        $capGeoString = '';
-        $capParameters = '';
+        return isset($alert['name']) && $alert['name'] == 'ENTRY';
+    }
 
-        $updatedDateTime = null;
-        $publishedDateTime = null;
-        $expiresDateTime = null;
-        $effectiveDateTime = null;
-
-        if(!isset($alert['name']) || $alert['name'] != 'ENTRY') {
-            return null;
-        }
+    protected function parseAlert(array $alert) : array
+    {
+        $parsedAlert = array(
+            'idString' => '',
+            'idKey' => '',
+            'updatedDateTime' => null,
+            'publishedDateTime' => null,
+            'updatedTime' => '',
+            'publishedTime' => '',
+            'authorName' => '',
+            'title' => '',
+            'link' => '',
+            'summary' => '',
+            'capEvent' => '',
+            'capEffectiveTime' => '',
+            'capExpiresTime' => '',
+            'capEffectiveDateTime' => null,
+            'capExpiresDateTime' => null,
+            'capStatus' => '',
+            'capMsgType' => '',
+            'capCategory' => '',
+            'capUrgencyExpected' => '',
+            'capSeverity' => '',
+            'capCertainty' => '',
+            'capAreaDesc' => '',
+            'capPolygon' => '',
+            'capGeo' => array(),
+            'capGeoString' => '',
+            'capParameters' => '',
+        );
 
         // Loop through attributes and set values
         foreach($alert['children'] as $element){
@@ -97,63 +92,65 @@ class IndexParser
 
             switch($elementName){
                 case 'ID':
-                    $idString = $elementData;
+                    $parsedAlert['idString'] = $elementData;
                     break;
                 case 'UPDATED':
-                    $updatedDateTime = new \DateTime($elementData);
-                    $updatedTime  = $updatedDateTime->format('Y-m-d H:i:s');
+                    $parsedAlert['updatedDateTime'] = new \DateTime($elementData);
+                    $parsedAlert['updatedTime'] = $parsedAlert['updatedDateTime']->format('Y-m-d H:i:s');
                     break;
                 case 'PUBLISHED':
-                    $publishedDateTime = new \DateTime($elementData);
-                    $publishedTime = $publishedDateTime->format('Y-m-d H:i:s');
+                    $parsedAlert['publishedDateTime'] = new \DateTime($elementData);
+                    $parsedAlert['publishedTime'] = $parsedAlert['publishedDateTime']->format('Y-m-d H:i:s');
                     break;
                 case 'AUTHOR':
-                    $authorName = $element['children'][0]['tagData'];
+                    $parsedAlert['authorName'] = $element['children'][0]['tagData'];
                     break;
                 case 'TITLE':
-                    $title = $elementData;
+                    $parsedAlert['title'] = $elementData;
                     break;
                 case 'LINK':
-                    $link = $elementAttrs['HREF'];
+                    $parsedAlert['link'] = $elementAttrs['HREF'];
                     break;
                 case 'SUMMARY':
-                    $summary = $elementData;
+                    $parsedAlert['summary'] = $elementData;
                     break;
                 case 'CAP:EVENT':
-                    $capEvent = $elementData;
+                    $parsedAlert['capEvent'] = $elementData;
                     break;
                 case 'CAP:EFFECTIVE':
                     $effectiveDateTime = new \DateTime($elementData);
-                    $capEffectiveTime = $effectiveDateTime->format('Y-m-d H:i:s');
+                    $parsedAlert['capEffectiveTime'] = $effectiveDateTime->format('Y-m-d H:i:s');
+                    $parsedAlert['capEffectiveDateTime'] = $effectiveDateTime;
                     break;
                 case 'CAP:EXPIRES':
                     $expiresDateTime = new \DateTime($elementData);
-                    $capExpiresTime = $expiresDateTime->format('Y-m-d H:i:s');
+                    $parsedAlert['capExpiresTime'] = $expiresDateTime->format('Y-m-d H:i:s');
+                    $parsedAlert['capExpiresDateTime'] = $expiresDateTime;
                     break;
                 case 'CAP:STATUS':
-                    $capStatus = $elementData;
+                    $parsedAlert['capStatus'] = $elementData;
                     break;
                 case 'CAP:MSGTYPE':
-                    $capMsgType = $elementData;
+                    $parsedAlert['capMsgType'] = $elementData;
                     break;
                 case 'CAP:CATEGORY':
-                    $capCategory = $elementData;
+                    $parsedAlert['capCategory'] = $elementData;
                     break;
                 case 'CAP:URGENCY':
-                    $capUrgencyExpected = $elementData;
+                    $parsedAlert['capUrgencyExpected'] = $elementData;
                     break;
                 case 'CAP:SEVERITY':
-                    $capSeverity = $elementData;
+                    $parsedAlert['capSeverity'] = $elementData;
                     break;
                 case 'CAP:CERTAINTY':
-                    $capCertainty = $elementData;
+                    $parsedAlert['capCertainty'] = $elementData;
                     break;
                 case 'CAP:AREADESC':
-                    $capAreaDesc = $elementData;
+                    $parsedAlert['capAreaDesc'] = $elementData;
                     break;
                 case 'CAP:POLYGON':
                     $capPolygonString = $elementData;
-                    $capPolygon = explode(' ', $capPolygonString);
+                    $parsedAlert['capPolygon'] = explode(' ', $capPolygonString);
                     break;
                 case 'CAP:GEOCODE':
                     $geoArray = array();
@@ -166,65 +163,19 @@ class IndexParser
                     }
 
                     $geoLocArray = $this->parseGeoArray($geoArray);
-                    $capGeoString = implode(', ', $geoArray);
-                    $capGeo = $geoLocArray;
+                    $parsedAlert['capGeoString'] = implode(', ', $geoArray);
+                    $parsedAlert['capGeo'] = $geoLocArray;
                     break;
                 case 'CAP:PARAMETERS':
                     $paramArray = array();
                     foreach($element['children'] as $param){
                         $paramArray[] = $param['tagData'];
                     }
-                    $capParameters = implode(', ', $paramArray);
+                    $parsedAlert['capParameters'] = implode(', ', $paramArray);
                     break;
             }
 
-            // idString contains important data in it as well.
-            // Use it to generate a unique key for the alert.
-            //
-            // Example:
-            //    alerts.weather.gov/cap/wwacapget.php?x=AK12539092A414.WinterWeatherAdvisory.125390A09AB0AK.AFGWSWNSB.a59f94b5da45867f6f45272a36df61cc
-            //
-            // The pieces of idString appears to be 
-            // 0. State abrev + some strange timestamp format
-            // 1. Type
-            // 2. Another timestamp with state abrev.
-            // 3. ??
-            // 4. Hash of some data (32 bit)
-            //
-            // Since 0,1,2, and 3 aren't unique on their own, but it looks like 4 is, I'll plan on using 0 and 4 just to be sure.
-
-            $idParts = explode('=', $idString);
-            $idSplit = explode('.', $idParts[1]);
-            $idKey = $idSplit[0] . '.' . $idSplit[4];
-
-            $parsedAlert = array(
-                'idString' => $idString,
-                'idKey' => $idKey,
-                'updatedDateTime' => $updatedDateTime,
-                'publishedDateTime' => $publishedDateTime,
-                'updatedTime' => $updatedTime,
-                'publishedTime' => $publishedTime,
-                'authorName' => $authorName,
-                'title' => $title,
-                'link' => $link,
-                'summary' => $summary,
-                'capEvent' => $capEvent,
-                'capEffectiveTime' => $capEffectiveTime,
-                'capExpiresTime' => $capExpiresTime,
-                'capEffectiveDateTime' => $effectiveDateTime,
-                'capExpiresDateTime' => $expiresDateTime,
-                'capStatus' => $capStatus,
-                'capMsgType' => $capMsgType,
-                'capCategory' => $capCategory,
-                'capUrgencyExpected' => $capUrgencyExpected,
-                'capSeverity' => $capSeverity,
-                'capCertainty' => $capCertainty,
-                'capAreaDesc' => $capAreaDesc,
-                'capPolygon' => $capPolygon,
-                'capGeo' => $capGeo,
-                'capGeoString' => $capGeoString,
-                'capParameters' => $capParameters,
-            );
+            $parsedAlert['idKey'] = $this->generateIdKey($parsedAlert['idString']);
 
         }
 
@@ -256,6 +207,30 @@ class IndexParser
         }
 
         return $geoLocArray;
+    }
+
+    protected function generateIdKey(string $idString) : string
+    {
+        // idString contains important data in it as well.
+        // Use it to generate a unique key for the alert.
+        //
+        // Example:
+        //    alerts.weather.gov/cap/wwacapget.php?x=AK12539092A414.WinterWeatherAdvisory.125390A09AB0AK.AFGWSWNSB.a59f94b5da45867f6f45272a36df61cc
+        //
+        // The pieces of idString appears to be
+        // 0. State abrev + some strange timestamp format
+        // 1. Type
+        // 2. Another timestamp with state abrev.
+        // 3. ??
+        // 4. Hash of some data (32 bit)
+        //
+        // Since 0,1,2, and 3 aren't unique on their own, but it looks like 4 is, I'll plan on using 0 and 4 just to be sure.
+
+        $idParts = explode('=', $idString);
+        $idSplit = explode('.', $idParts[1]);
+        $idKey = $idSplit[0] . '.' . $idSplit[4];
+
+        return $idKey;
     }
 
 }

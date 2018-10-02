@@ -13,7 +13,7 @@ class XmlProviderFactory
 
     public function getXmlProvider() : XmlProvider
     {
-        if ($this->localFilePath != null) {
+        if (!empty($this->localFilePath)) {
             return new FileProvider($this->localFilePath);
         }
 
