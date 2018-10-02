@@ -168,7 +168,7 @@ class IndexParser
                     break;
                 case 'CAP:PARAMETERS':
                     $paramArray = array();
-                    foreach($element['children'] as $param){
+                    foreach ($element['children'] as $param){
                         $paramArray[] = $param['tagData'];
                     }
                     $parsedAlert['capParameters'] = implode(', ', $paramArray);
