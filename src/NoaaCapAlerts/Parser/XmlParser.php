@@ -25,13 +25,13 @@ class XmlParser {
     public function getArrayFromXml($xml)
     {
         $xmlParser = xml_parser_create();
-        xml_set_object($xmlParser,$this);
+        xml_set_object($xmlParser, $this);
         xml_set_element_handler($xmlParser, "tagOpen", "tagClosed");
         xml_set_character_data_handler($xmlParser, "tagData");
 
         $successfulParse = xml_parse($xmlParser, $xml, true);
 
-        if($successfulParse === 0) {
+        if ($successfulParse === 0) {
             $errorString = xml_error_string(xml_get_error_code($xmlParser));
             $errorLine = xml_get_current_line_number($xmlParser);
 
@@ -50,7 +50,7 @@ class XmlParser {
             "attrs" => $attrs
         ); 
         
-        array_push($this->output,$tag);
+        array_push($this->output, $tag);
     }
 
     protected function tagClosed($parser, $name)
@@ -64,7 +64,7 @@ class XmlParser {
     {
         $notWhitespace = !empty(trim($tagData));
 
-        if($notWhitespace) {
+        if ($notWhitespace) {
             $this->output[count($this->output) - 1]['tagData'] = $tagData;
         }
     }

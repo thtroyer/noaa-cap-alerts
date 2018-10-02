@@ -18,23 +18,23 @@ class Dependencies extends Container
 
         $this['LocalFile'] = getenv("NoaaLocalFilePath");
 
-        $this['NoaaAlertManager'] = function ($c) {
+        $this['NoaaAlertManager'] = function($c) {
             return new NoaaAlertManager($c['XmlProvider'], $c['IndexParser']);
         };
 
-        $this['XmlProvider'] = function ($c) {
+        $this['XmlProvider'] = function($c) {
             return $c['XmlProviderFactory']->getXmlProvider();
         };
 
-        $this['XmlProviderFactory'] = function ($c) {
+        $this['XmlProviderFactory'] = function($c) {
             return new XmlProviderFactory($c['LocalFile']);
         };
 
-        $this['IndexParser'] = function ($c) {
+        $this['IndexParser'] = function($c) {
             return new IndexParser($c['XmlParser']);
         };
 
-        $this['XmlParser'] = function ($c) {
+        $this['XmlParser'] = function($c) {
             return new XmlParser();
         };
     }

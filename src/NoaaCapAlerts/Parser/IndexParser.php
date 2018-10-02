@@ -16,7 +16,7 @@ class IndexParser
     {
         $this->xmlParser = $xmlParser;
 
-        if($xmlParser === null) {
+        if ($xmlParser === null) {
             $this->xmlParser = new XmlParser();
         }
     }
@@ -30,7 +30,7 @@ class IndexParser
         // Process each alert ("ENTRY")
         $resultArray = array();
 
-        foreach($alertDataArray as $alert) {
+        foreach ($alertDataArray as $alert) {
             if (!$this->isAlert($alert)) {
                 continue;
             }
@@ -80,17 +80,17 @@ class IndexParser
         );
 
         // Loop through attributes and set values
-        foreach($alert['children'] as $element){
+        foreach ($alert['children'] as $element){
             $elementName = $element['name'];
             $elementAttrs = $element['attrs'];
-            if(isset($element['tagData'])){
+            if (isset($element['tagData'])){
                 $elementData = $element['tagData'];
             } else {
                 $elementData = '';
             }
 
 
-            switch($elementName){
+            switch ($elementName){
                 case 'ID':
                     $parsedAlert['idString'] = $elementData;
                     break;
@@ -156,8 +156,8 @@ class IndexParser
                     $geoArray = array();
 
                     // parse into simple array
-                    foreach($element['children'] as $geo) {
-                        if(isset($geo['tagData'])) {
+                    foreach ($element['children'] as $geo) {
+                        if (isset($geo['tagData'])) {
                             $geoArray[] = $geo['tagData'];
                         }
                     }
@@ -197,8 +197,8 @@ class IndexParser
         $currentLocationKey = 'null';
         $geoLocArray = array();
 
-        foreach($geoArray as $geoLoc) {
-            if(in_array($geoLoc, $locationFormatTypes)) {
+        foreach ($geoArray as $geoLoc) {
+            if (in_array($geoLoc, $locationFormatTypes)) {
                 $currentLocationKey = $geoLoc;
                 $geoLocArray[$geoLoc] = array();
             } else {
