@@ -170,7 +170,6 @@ class IndexParser
                     $capGeo = $geoLocArray;
                     break;
                 case 'CAP:PARAMETERS':
-                    $capParameters  = '';
                     $paramArray = array();
                     foreach($element['children'] as $param){
                         $paramArray[] = $param['tagData'];

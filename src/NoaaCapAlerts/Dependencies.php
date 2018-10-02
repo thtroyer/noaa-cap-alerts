@@ -5,7 +5,7 @@ namespace NoaaCapAlerts;
 use NoaaCapAlerts\Model\NoaaAlertManager;
 use NoaaCapAlerts\Parser\IndexParser;
 use NoaaCapAlerts\Parser\XmlParser;
-use NoaaCapAlerts\XmlProvider\DownloaderProvider;
+use NoaaCapAlerts\XmlProvider\XmlProviderFactory;
 use Pimple\Container;
 
 class Dependencies extends Container
@@ -16,12 +16,18 @@ class Dependencies extends Container
     {
         parent::__construct();
 
+        $this['LocalFile'] = getenv("NoaaLocalFilePath");
+
         $this['NoaaAlertManager'] = function ($c) {
-            return new NoaaAlertManager($c['DownloaderProvider'], $c['IndexParser']);
+            return new NoaaAlertManager($c['XmlProvider'], $c['IndexParser']);
         };
 
-        $this['DownloaderProvider'] = function ($c) {
-            return new DownloaderProvider();
+        $this['XmlProvider'] = function ($c) {
+            return $c['XmlProviderFactory']->getXmlProvider();
+        };
+
+        $this['XmlProviderFactory'] = function ($c) {
+            return new XmlProviderFactory($c['LocalFile']);
         };
 
         $this['IndexParser'] = function ($c) {
@@ -30,10 +36,6 @@ class Dependencies extends Container
 
         $this['XmlParser'] = function ($c) {
             return new XmlParser();
-        };
-
-        $this['DownloaderProvider'] = function ($c) {
-            return new DownloaderProvider();
         };
     }
 }

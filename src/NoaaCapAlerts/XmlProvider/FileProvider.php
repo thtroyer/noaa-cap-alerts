@@ -4,9 +4,17 @@ namespace NoaaCapAlerts\XmlProvider;
 
 class FileProvider implements XmlProvider
 {
-    public function getXml(): string
+    protected $filePath;
+
+    function __construct(string $filePath = '')
     {
-        //@todo
-        return "";
+        $this->filePath = $filePath;
+    }
+
+    public function getXml() : string
+    {
+        $xml = file_get_contents($this->filePath);
+
+        return $xml;
     }
 }
