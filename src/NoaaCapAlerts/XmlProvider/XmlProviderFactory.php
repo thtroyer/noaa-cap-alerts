@@ -11,7 +11,7 @@ class XmlProviderFactory
         $this->localFilePath = $localFilePath;
     }
 
-    public function getXmlProvider() : XmlProvider
+    public function getXmlProvider(): XmlProvider
     {
         if (!empty($this->localFilePath)) {
             return new FileProvider($this->localFilePath);

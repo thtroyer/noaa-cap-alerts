@@ -11,7 +11,7 @@ class DownloaderProvider implements XmlProvider
         $this->indexUrl = $indexUrl;
     }
 
-    public function getXml() : string
+    public function getXml(): string
     {
         $options = array(
             'http' => array(

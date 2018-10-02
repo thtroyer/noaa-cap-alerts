@@ -2,12 +2,6 @@
 
 namespace NoaaCapAlerts\Parser;
 
-use NoaaCapAlerts\Exceptions\XmlParseException;
-
-/**
- * Class IndexParser
- * @package IndexParser
- */
 class IndexParser
 {
     protected $xmlParser;
@@ -21,7 +15,7 @@ class IndexParser
         }
     }
 
-    public function parse(string $xml) : array
+    public function parse(string $xml): array
     {
         // parse XML into an array of alerts
         $rawDataArray = $this->xmlParser->getArrayFromXml($xml);
@@ -43,12 +37,12 @@ class IndexParser
         return $resultArray;
     }
 
-    protected function isAlert(array $alert) : bool
+    protected function isAlert(array $alert): bool
     {
         return isset($alert['name']) && $alert['name'] == 'ENTRY';
     }
 
-    protected function parseAlert(array $alert) : array
+    protected function parseAlert(array $alert): array
     {
         $parsedAlert = array(
             'idString' => '',
@@ -80,17 +74,17 @@ class IndexParser
         );
 
         // Loop through attributes and set values
-        foreach ($alert['children'] as $element){
+        foreach ($alert['children'] as $element) {
             $elementName = $element['name'];
             $elementAttrs = $element['attrs'];
-            if (isset($element['tagData'])){
+            if (isset($element['tagData'])) {
                 $elementData = $element['tagData'];
             } else {
                 $elementData = '';
             }
 
 
-            switch ($elementName){
+            switch ($elementName) {
                 case 'ID':
                     $parsedAlert['idString'] = $elementData;
                     break;
@@ -168,7 +162,7 @@ class IndexParser
                     break;
                 case 'CAP:PARAMETERS':
                     $paramArray = array();
-                    foreach ($element['children'] as $param){
+                    foreach ($element['children'] as $param) {
                         $paramArray[] = $param['tagData'];
                     }
                     $parsedAlert['capParameters'] = implode(', ', $paramArray);
@@ -182,11 +176,7 @@ class IndexParser
         return $parsedAlert;
     }
 
-    /**
-     * @param array $geoArray
-     * @return array
-     */
-    protected function parseGeoArray(array $geoArray) : array
+    protected function parseGeoArray(array $geoArray): array
     {
         // organize array by format type
         $locationFormatTypes = array(
@@ -209,7 +199,7 @@ class IndexParser
         return $geoLocArray;
     }
 
-    protected function generateIdKey(string $idString) : string
+    protected function generateIdKey(string $idString): string
     {
         // idString contains important data in it as well.
         // Use it to generate a unique key for the alert.

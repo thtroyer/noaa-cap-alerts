@@ -11,7 +11,7 @@ class FileProvider implements XmlProvider
         $this->filePath = $filePath;
     }
 
-    public function getXml() : string
+    public function getXml(): string
     {
         $xml = file_get_contents($this->filePath);
 

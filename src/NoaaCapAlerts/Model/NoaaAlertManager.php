@@ -17,7 +17,7 @@ class NoaaAlertManager
         $this->indexParser = $indexParser;
     }
 
-    public function getAlerts() : array
+    public function getAlerts(): array
     {
         $alerts = array();
         $alertData = $this->indexParser->parse($this->xmlProvider->getXml());

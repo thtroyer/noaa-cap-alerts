@@ -4,13 +4,9 @@ namespace NoaaCapAlerts\Parser;
 
 use NoaaCapAlerts\Exceptions\XmlParseException;
 
-/**
- * Uses php's xml_parse to create a php array
- * from an XML string.
- */
-class XmlParser {
+class XmlParser
+{
 
-    /** @var array  Array representation of the passed XML */
     protected $output;
 
     function __construct()
@@ -18,10 +14,6 @@ class XmlParser {
         $this->output = array();
     }
 
-    /**
-     * @param $xml 
-     * @return array
-     */
     public function getArrayFromXml($xml)
     {
         $xmlParser = xml_parser_create();
@@ -48,8 +40,8 @@ class XmlParser {
         $tag = array(
             "name" => $name,
             "attrs" => $attrs
-        ); 
-        
+        );
+
         array_push($this->output, $tag);
     }
 

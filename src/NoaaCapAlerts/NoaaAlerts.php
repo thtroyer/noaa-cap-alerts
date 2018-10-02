@@ -11,7 +11,7 @@ class NoaaAlerts
         $this->dependencyContainer = new Dependencies();
     }
 
-    function getAlerts() : array
+    function getAlerts(): array
     {
         $noaaAlertManager = $this->dependencyContainer['NoaaAlertManager'];
 
