@@ -6,7 +6,6 @@
 [![Latest Stable Version](https://poser.pugx.org/thtroyer/noaa-cap-alerts/version)](https://packagist.org/packages/thtroyer/noaa-cap-alerts)
 [![Latest Unstable Version](https://poser.pugx.org/thtroyer/noaa-cap-alerts/v/unstable)](//packagist.org/packages/thtroyer/noaa-cap-alerts)
 [![License](https://poser.pugx.org/thtroyer/noaa-cap-alerts/license)](https://packagist.org/packages/thtroyer/noaa-cap-alerts)
-[![Total Downloads](https://poser.pugx.org/thtroyer/noaa-cap-alerts/downloads)](https://packagist.org/packages/thtroyer/noaa-cap-alerts)
 
 ## What is this?
 This is a PHP 7.1+ library to make it easier to fetch and use weather alerts created by NOAA.
