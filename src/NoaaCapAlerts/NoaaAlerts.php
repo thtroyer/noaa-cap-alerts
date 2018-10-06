@@ -6,7 +6,7 @@ class NoaaAlerts
 {
     private $dependencyContainer;
 
-    function __construct($url = '', $xml = '')
+    function __construct()
     {
         $this->dependencyContainer = new Dependencies();
     }
