@@ -48,13 +48,7 @@ class IndexParser
 
         // Loop through attributes and set values
         foreach ($alert['children'] as $element) {
-            $elementName = $element['name'];
-            $elementAttrs = $element['attrs'];
-            if (isset($element['tagData'])) {
-                $elementData = $element['tagData'];
-            } else {
-                $elementData = '';
-            }
+            list($elementName, $elementAttrs, $elementData) = $this->parseElementItems($element);
 
             switch ($elementName) {
                 case 'ID':
@@ -240,6 +234,18 @@ class IndexParser
         }
 
         return "";
+    }
+
+    protected function parseElementItems($element): array
+    {
+        $elementName = $element['name'];
+        $elementAttrs = $element['attrs'];
+        if (isset($element['tagData'])) {
+            $elementData = $element['tagData'];
+        } else {
+            $elementData = '';
+        }
+        return array($elementName, $elementAttrs, $elementData);
     }
 
 }
