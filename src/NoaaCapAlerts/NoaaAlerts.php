@@ -6,12 +6,12 @@ class NoaaAlerts
 {
     private $dependencyContainer;
 
-    function __construct()
+    public function __construct()
     {
         $this->dependencyContainer = new Dependencies();
     }
 
-    function getAlerts(): array
+    public function getAlerts(): array
     {
         $noaaAlertManager = $this->dependencyContainer['NoaaAlertManager'];
 

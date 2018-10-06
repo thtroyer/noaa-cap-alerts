@@ -6,7 +6,7 @@ class XmlProviderFactory
 {
     protected $localFilePath;
 
-    function __construct(string $localFilePath = null)
+    public function __construct(string $localFilePath = null)
     {
         $this->localFilePath = $localFilePath;
     }

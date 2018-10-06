@@ -6,7 +6,7 @@ class FileProvider implements XmlProvider
 {
     protected $filePath;
 
-    function __construct(string $filePath = '')
+    public function __construct(string $filePath = '')
     {
         $this->filePath = $filePath;
     }

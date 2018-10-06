@@ -9,7 +9,7 @@ class XmlParser
 
     protected $output;
 
-    function __construct()
+    public function __construct()
     {
         $this->output = array();
     }

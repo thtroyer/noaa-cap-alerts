@@ -6,7 +6,7 @@ class IndexParser
 {
     protected $xmlParser;
 
-    function __construct(XmlParser $xmlParser = null)
+    public function __construct(XmlParser $xmlParser = null)
     {
         if ($xmlParser === null) {
             $this->xmlParser = new XmlParser();

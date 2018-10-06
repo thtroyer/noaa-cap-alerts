@@ -12,7 +12,7 @@ class Dependencies extends Container
 {
     protected $container;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
 

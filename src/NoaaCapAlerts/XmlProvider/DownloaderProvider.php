@@ -6,7 +6,7 @@ class DownloaderProvider implements XmlProvider
 {
     protected $indexUrl;
 
-    function __construct(string $indexUrl = 'http://alerts.weather.gov/cap/us.php?x=0')
+    public function __construct(string $indexUrl = 'http://alerts.weather.gov/cap/us.php?x=0')
     {
         $this->indexUrl = $indexUrl;
     }
