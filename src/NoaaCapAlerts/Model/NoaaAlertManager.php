@@ -45,7 +45,7 @@ class NoaaAlertManager
                 $data['capPolygon'],
                 $data['capGeo'],
                 $data['capGeoString'],
-                $data['capParameters']
+                $data['vtec']
             );
 
             $alerts[] = $alert;

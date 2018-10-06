@@ -25,7 +25,7 @@ class NoaaAlert
     protected $capPolygon;
     protected $capGeo;
     protected $capGeoString;
-    protected $capParameters;
+    protected $vtec;
 
     public function __construct(string $idString,
                                 string $idKey,
@@ -48,7 +48,7 @@ class NoaaAlert
                                 array $capPolygon,
                                 array $capGeo,
                                 string $capGeoString,
-                                string $capParameters)
+                                string $vtec)
     {
         $this->idString = $idString;
         $this->idKey = $idKey;
@@ -71,7 +71,7 @@ class NoaaAlert
         $this->capPolygon = $capPolygon;
         $this->capGeo = $capGeo;
         $this->capGeoString = $capGeoString;
-        $this->capParameters = $capParameters;
+        $this->vtec = $vtec;
     }
 
     public function toArray(): array
@@ -98,7 +98,7 @@ class NoaaAlert
             'capPolygon' => $this->capPolygon,
             'capGeo' => $this->capGeo,
             'capGeoString' => $this->capGeoString,
-            'capParameters' => $this->capParameters,
+            'vtec' => $this->vtec,
         );
     }
 
@@ -207,8 +207,8 @@ class NoaaAlert
         return $this->capGeoString;
     }
 
-    public function getCapParameters(): string
+    public function getVtec(): string
     {
-        return $this->capParameters;
+        return $this->vtec;
     }
 }

@@ -9,7 +9,7 @@ class NoaaAlertTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider alertDataProvider
      */
-    public function testGetters($data)
+    public function testGetters(array $data)
     {
         $noaaAlert = $this->generateNoaaAlertFromArray($data);
 
@@ -34,7 +34,7 @@ class NoaaAlertTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($data['capPolygon'], $noaaAlert->getCapPolygon());
         $this->assertEquals($data['capGeo'], $noaaAlert->getCapGeo());
         $this->assertEquals($data['capGeoString'], $noaaAlert->getCapGeoString());
-        $this->assertEquals($data['capParameters'], $noaaAlert->getCapParameters());
+        $this->assertEquals($data['vtec'], $noaaAlert->getVtec());
     }
 
     /**
@@ -71,7 +71,7 @@ class NoaaAlertTest extends \PHPUnit\Framework\TestCase
             $data['capPolygon'],
             $data['capGeo'],
             $data['capGeoString'],
-            $data['capParameters']
+            $data['vtec']
         );
     }
 
@@ -101,7 +101,7 @@ class NoaaAlertTest extends \PHPUnit\Framework\TestCase
                     'capPolygon' => array('1'),
                     'capGeo' => array('2'),
                     'capGeoString' => 'capGeoString',
-                    'capParameters' => 'capParameters',
+                    'vtec' => 'vtec',
                 ),
             ),
         );

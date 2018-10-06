@@ -8,10 +8,10 @@ class IndexParser
 
     function __construct(XmlParser $xmlParser = null)
     {
-        $this->xmlParser = $xmlParser;
-
         if ($xmlParser === null) {
             $this->xmlParser = new XmlParser();
+        } else {
+            $this->xmlParser = $xmlParser;
         }
     }
 
@@ -70,7 +70,7 @@ class IndexParser
             'capPolygon' => '',
             'capGeo' => array(),
             'capGeoString' => '',
-            'capParameters' => '',
+            'vtec' => '',
         );
 
         // Loop through attributes and set values
@@ -82,7 +82,6 @@ class IndexParser
             } else {
                 $elementData = '';
             }
-
 
             switch ($elementName) {
                 case 'ID':
@@ -160,12 +159,11 @@ class IndexParser
                     $parsedAlert['capGeoString'] = implode(', ', $geoArray);
                     $parsedAlert['capGeo'] = $geoLocArray;
                     break;
-                case 'CAP:PARAMETERS':
-                    $paramArray = array();
-                    foreach ($element['children'] as $param) {
-                        $paramArray[] = $param['tagData'];
+                case 'CAP:PARAMETER':
+                    // It appears only vtec is currently stored here
+                    if (isset($element['children'][1]['tagData'])) {
+                        $parsedAlert['vtec'] = $element['children'][1]['tagData'];
                     }
-                    $parsedAlert['capParameters'] = implode(', ', $paramArray);
                     break;
             }
 

@@ -57,8 +57,8 @@ active alerts.
 			<value>AKZ221 AKZ222 AKZ223 AKZ224</value>
 		</cap:geocode>
 		<cap:parameter>
-			<valueName>VTEC</valueName>
-			<value></value>
+		<valueName>VTEC</valueName>
+		<value>/O.NEW.KMTR.FW.A.0004.181007T0600Z-181008T1600Z/</value>
 		</cap:parameter>
 	</entry>
 </feed>

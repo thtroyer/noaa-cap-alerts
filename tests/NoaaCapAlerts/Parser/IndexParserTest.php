@@ -60,7 +60,7 @@ class IndexParserTest extends \PHPUnit\Framework\TestCase
                     ),
                 ),
                 'capGeoString' => 'FIPS6, 002090 002240 002290, UGC, AKZ221 AKZ222 AKZ223 AKZ224',
-                'capParameters' => '',
+                'vtec' => '/O.NEW.KMTR.FW.A.0004.181007T0600Z-181008T1600Z/',
                 'updatedDateTime' => new \DateTime('2017-09-01T19:12:00-08:00'),
                 'publishedDateTime' => new \DateTime('2017-09-01T19:12:00-08:00'),
                 'capEffectiveDateTime' => new \DateTime('2017-09-01T19:12:00-08:00'),

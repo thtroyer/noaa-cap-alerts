@@ -55,7 +55,7 @@ class NoaaAlertManagerTest extends \PHPUnit\Framework\TestCase
                 'capPolygon' => array(),
                 'capGeo' => array(),
                 'capGeoString' => 'capGeoString',
-                'capParameters' => 'capParameters',
+                'vtec' => 'vtec',
             ),
         );
     }
