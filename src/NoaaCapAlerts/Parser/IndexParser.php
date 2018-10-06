@@ -44,34 +44,7 @@ class IndexParser
 
     protected function parseAlert(array $alert): array
     {
-        $parsedAlert = array(
-            'idString' => '',
-            'idKey' => '',
-            'updatedDateTime' => null,
-            'publishedDateTime' => null,
-            'updatedTime' => '',
-            'publishedTime' => '',
-            'authorName' => '',
-            'title' => '',
-            'link' => '',
-            'summary' => '',
-            'capEvent' => '',
-            'capEffectiveTime' => '',
-            'capExpiresTime' => '',
-            'capEffectiveDateTime' => null,
-            'capExpiresDateTime' => null,
-            'capStatus' => '',
-            'capMsgType' => '',
-            'capCategory' => '',
-            'capUrgencyExpected' => '',
-            'capSeverity' => '',
-            'capCertainty' => '',
-            'capAreaDesc' => '',
-            'capPolygon' => '',
-            'capGeo' => array(),
-            'capGeoString' => '',
-            'vtec' => '',
-        );
+        $parsedAlert = $this->getDefaultAlertValues();
 
         // Loop through attributes and set values
         foreach ($alert['children'] as $element) {
@@ -146,24 +119,14 @@ class IndexParser
                     $parsedAlert['capPolygon'] = explode(' ', $capPolygonString);
                     break;
                 case 'CAP:GEOCODE':
-                    $geoArray = array();
-
-                    // parse into simple array
-                    foreach ($element['children'] as $geo) {
-                        if (isset($geo['tagData'])) {
-                            $geoArray[] = $geo['tagData'];
-                        }
-                    }
-
-                    $geoLocArray = $this->parseGeoArray($geoArray);
+                    $geoArray = $this->parseGeoArray($element);
+                    $cleanGeoArray = $this->formatGeoArray($geoArray);
                     $parsedAlert['capGeoString'] = implode(', ', $geoArray);
-                    $parsedAlert['capGeo'] = $geoLocArray;
+                    $parsedAlert['capGeo'] = $cleanGeoArray;
                     break;
                 case 'CAP:PARAMETER':
-                    // It appears only vtec is currently stored here
-                    if (isset($element['children'][1]['tagData'])) {
-                        $parsedAlert['vtec'] = $element['children'][1]['tagData'];
-                    }
+                    $vtec = $this->parseVtec($element);
+                    $parsedAlert['vtec'] = $vtec;
                     break;
             }
 
@@ -174,7 +137,7 @@ class IndexParser
         return $parsedAlert;
     }
 
-    protected function parseGeoArray(array $geoArray): array
+    protected function formatGeoArray(array $geoArray): array
     {
         // organize array by format type
         $locationFormatTypes = array(
@@ -219,6 +182,64 @@ class IndexParser
         $idKey = $idSplit[0] . '.' . $idSplit[4];
 
         return $idKey;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getDefaultAlertValues(): array
+    {
+        $parsedAlert = array(
+            'idString' => '',
+            'idKey' => '',
+            'updatedDateTime' => null,
+            'publishedDateTime' => null,
+            'updatedTime' => '',
+            'publishedTime' => '',
+            'authorName' => '',
+            'title' => '',
+            'link' => '',
+            'summary' => '',
+            'capEvent' => '',
+            'capEffectiveTime' => '',
+            'capExpiresTime' => '',
+            'capEffectiveDateTime' => null,
+            'capExpiresDateTime' => null,
+            'capStatus' => '',
+            'capMsgType' => '',
+            'capCategory' => '',
+            'capUrgencyExpected' => '',
+            'capSeverity' => '',
+            'capCertainty' => '',
+            'capAreaDesc' => '',
+            'capPolygon' => '',
+            'capGeo' => array(),
+            'capGeoString' => '',
+            'vtec' => '',
+        );
+        return $parsedAlert;
+    }
+
+    protected function parseGeoArray(array $element): array
+    {
+        $geoArray = array();
+
+        foreach ($element['children'] as $geo) {
+            if (isset($geo['tagData'])) {
+                $geoArray[] = $geo['tagData'];
+            }
+        }
+
+        return $geoArray;
+    }
+
+    protected function parseVtec(array $element): string
+    {
+        if (isset($element['children'][1]['tagData'])) {
+            return $element['children'][1]['tagData'];
+        }
+
+        return "";
     }
 
 }
