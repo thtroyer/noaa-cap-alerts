@@ -15,7 +15,7 @@ class DownloaderProvider implements XmlProvider
     {
         $options = array(
             'http' => array(
-                'header' => "User-agent: noaa-cap-parser',"
+                'header' => "User-agent: thtroyer/noaa-cap-alerts',"
             ),
         );
 
