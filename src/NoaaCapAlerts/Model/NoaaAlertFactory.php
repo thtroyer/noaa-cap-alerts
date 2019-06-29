@@ -7,7 +7,7 @@ use NoaaCapAlerts\Model\Polygon\PolygonFactory;
 use NoaaCapAlerts\Parser\NoaaIndexParser;
 use NoaaCapAlerts\XmlProvider\XmlProvider;
 
-class NoaaAlertManager
+class NoaaAlertFactory
 {
     private $xmlProvider;
     private $indexParser;

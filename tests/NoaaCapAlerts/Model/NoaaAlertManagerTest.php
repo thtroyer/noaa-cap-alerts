@@ -27,7 +27,7 @@ class NoaaAlertManagerTest extends \PHPUnit\Framework\TestCase
 
         $mockPolygonFactory = $this->createMock(PolygonFactory::class);
 
-        $noaaAlertManager = new NoaaAlertManager($mockXmlProvider, $mockIndexParser, $mockPolygonFactory);
+        $noaaAlertManager = new NoaaAlertFactory($mockXmlProvider, $mockIndexParser, $mockPolygonFactory);
         $alerts = $noaaAlertManager->getAlerts();
 
         $this->assertCount(1, $alerts);

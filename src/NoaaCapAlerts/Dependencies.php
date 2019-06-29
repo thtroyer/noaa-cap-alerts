@@ -2,7 +2,7 @@
 
 namespace NoaaCapAlerts;
 
-use NoaaCapAlerts\Model\NoaaAlertManager;
+use NoaaCapAlerts\Model\NoaaAlertFactory;
 use NoaaCapAlerts\Model\Polygon\PolygonFactory;
 use NoaaCapAlerts\Parser\NoaaIndexParser;
 use NoaaCapAlerts\Parser\XmlParser;
@@ -20,7 +20,7 @@ class Dependencies extends Container
         $this['LocalFile'] = getenv("NoaaLocalFilePath");
 
         $this['NoaaAlertManager'] = function ($c) {
-            return new NoaaAlertManager($c['XmlProvider'], $c['IndexParser'], $c['PolygonFactory']);
+            return new NoaaAlertFactory($c['XmlProvider'], $c['IndexParser'], $c['PolygonFactory']);
         };
 
         $this['XmlProvider'] = function ($c) {
