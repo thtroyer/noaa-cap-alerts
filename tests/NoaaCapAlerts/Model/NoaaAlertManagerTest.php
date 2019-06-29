@@ -2,8 +2,10 @@
 
 namespace NoaaCapAlerts\Model;
 
-use NoaaCapAlerts\Parser\IndexParser;
+use NoaaCapAlerts\Model\Polygon\PolygonFactory;
+use NoaaCapAlerts\Parser\NoaaIndexParser;
 use NoaaCapAlerts\XmlProvider\XmlProvider;
+use NoaaCapAlerts\Model\Polygon\Polygon;
 
 class NoaaAlertManagerTest extends \PHPUnit\Framework\TestCase
 {
@@ -16,14 +18,16 @@ class NoaaAlertManagerTest extends \PHPUnit\Framework\TestCase
                         ->method('getXml')
                         ->willReturn('some xml');
 
-        $mockIndexParser = $this->createMock(IndexParser::class);
+        $mockIndexParser = $this->createMock(NoaaIndexParser::class);
 
         $mockIndexParser->expects($this->once())
                         ->method('parse')
                         ->with($this->stringContains('some xml'))
                         ->willReturn($this->getParsedData());
 
-        $noaaAlertManager = new NoaaAlertManager($mockXmlProvider, $mockIndexParser);
+        $mockPolygonFactory = $this->createMock(PolygonFactory::class);
+
+        $noaaAlertManager = new NoaaAlertManager($mockXmlProvider, $mockIndexParser, $mockPolygonFactory);
         $alerts = $noaaAlertManager->getAlerts();
 
         $this->assertCount(1, $alerts);

@@ -2,6 +2,8 @@
 
 namespace NoaaCapAlerts\Model;
 
+use NoaaCapAlerts\Model\Polygon\Polygon;
+
 class NoaaAlert
 {
     protected $idString;
@@ -26,6 +28,7 @@ class NoaaAlert
     protected $capGeo;
     protected $capGeoString;
     protected $vtec;
+    protected $polygon;
 
     public function __construct(string $idString,
                                 string $idKey,
@@ -48,7 +51,8 @@ class NoaaAlert
                                 array $capPolygon,
                                 array $capGeo,
                                 string $capGeoString,
-                                string $vtec)
+                                string $vtec,
+                                ?Polygon $polygon = null)
     {
         $this->idString = $idString;
         $this->idKey = $idKey;
@@ -72,6 +76,12 @@ class NoaaAlert
         $this->capGeo = $capGeo;
         $this->capGeoString = $capGeoString;
         $this->vtec = $vtec;
+
+        if ($polygon !== null) {
+            $this->polygon = $polygon;
+        } else {
+            $this->polygon = new Polygon();
+        }
     }
 
     public function toArray(): array

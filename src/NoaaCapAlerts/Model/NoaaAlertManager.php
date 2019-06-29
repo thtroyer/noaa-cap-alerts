@@ -3,7 +3,8 @@
 namespace NoaaCapAlerts\Model;
 
 
-use NoaaCapAlerts\Parser\IndexParser;
+use NoaaCapAlerts\Model\Polygon\PolygonFactory;
+use NoaaCapAlerts\Parser\NoaaIndexParser;
 use NoaaCapAlerts\XmlProvider\XmlProvider;
 
 class NoaaAlertManager
@@ -11,10 +12,11 @@ class NoaaAlertManager
     private $xmlProvider;
     private $indexParser;
 
-    public function __construct(XmlProvider $xmlProvider, IndexParser $indexParser)
+    public function __construct(XmlProvider $xmlProvider, NoaaIndexParser $indexParser, PolygonFactory $polygonFactory)
     {
         $this->xmlProvider = $xmlProvider;
         $this->indexParser = $indexParser;
+        $this->polygonFactory = $polygonFactory;
     }
 
     public function getAlerts(): array
@@ -45,7 +47,8 @@ class NoaaAlertManager
                 $data['capPolygon'],
                 $data['capGeo'],
                 $data['capGeoString'],
-                $data['vtec']
+                $data['vtec'],
+                $this->polygonFactory->create($data['capPolygon'])
             );
 
             $alerts[] = $alert;

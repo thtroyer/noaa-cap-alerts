@@ -2,11 +2,11 @@
 
 namespace NoaaCapAlerts\Parser;
 
-class IndexParser
+class NoaaIndexParser
 {
     protected $xmlParser;
 
-    public function __construct(XmlParser $xmlParser = null)
+    public function __construct(?XmlParser $xmlParser = null)
     {
         if ($xmlParser === null) {
             $this->xmlParser = new XmlParser();

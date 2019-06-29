@@ -2,7 +2,7 @@
 namespace NoaaCapAlerts\Tests\Parser;
 
 use NoaaCapAlerts\Exceptions\XmlParseException;
-use NoaaCapAlerts\Parser\IndexParser;
+use NoaaCapAlerts\Parser\NoaaIndexParser;
 
 class IndexParserTest extends \PHPUnit\Framework\TestCase
 {
@@ -12,7 +12,7 @@ class IndexParserTest extends \PHPUnit\Framework\TestCase
         $this->expectException(XmlParseException::class);
 
         $xml = '';
-        $parser = new IndexParser();
+        $parser = new NoaaIndexParser();
 
         $parser->parse($xml);
     }
@@ -20,7 +20,7 @@ class IndexParserTest extends \PHPUnit\Framework\TestCase
     public function testSimpleRequest()
     {
         $xml = file_get_contents(__DIR__ . '/../../files/noaaExampleSmall.xml');
-        $parser = new IndexParser();
+        $parser = new NoaaIndexParser();
         $result = $parser->parse($xml);
 
         $expectedResult = array(
