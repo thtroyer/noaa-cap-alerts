@@ -1,6 +1,6 @@
 <?php
 
-namespace NoaaCapAlerts\Model;
+namespace NoaaCapAlerts\Model\Polygon;
 
 
 class Point
