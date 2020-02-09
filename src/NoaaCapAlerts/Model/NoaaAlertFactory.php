@@ -11,6 +11,7 @@ class NoaaAlertFactory
 {
     private $xmlProvider;
     private $indexParser;
+    private $polygonFactory;
 
     public function __construct(XmlProvider $xmlProvider, NoaaIndexParser $indexParser, PolygonFactory $polygonFactory)
     {

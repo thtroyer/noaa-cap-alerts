@@ -19,6 +19,12 @@ composer require thtroyer/noaa-cap-alerts
 composer update
 ```
 
+### Dependencies
+Make sure you have the XML extension installed for PHP.
+
+e.g. `sudo apt install php7.4-xml`
+
+### Usage
 Instantiate a new NoaaCapAlerts\NoaaAlerts object.  Calling getAlerts() will download the latest alerts from NOAA, parse and return a set of data objects to be consumed.
 
 ```php
