@@ -15,7 +15,6 @@ class PolygonTest extends \PHPUnit\Framework\TestCase
                 new Point(5, 0),
                 new Point(5, 5),
                 new Point(0, 5),
-                new Point(0, 0),
             )
         );
 

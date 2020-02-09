@@ -19,15 +19,12 @@ class Polygon
         $this->points = $points;
     }
 
-    public function isPointInPolygon(Point $targetPoint): bool {
+    public function isPointInPolygon(Point $targetPoint): bool
+    {
         $targetLatitude = $targetPoint->getLatitude();
         $longitudeHits = [];
-        $lastPoint = null;
+        $lastPoint = $this->points[array_key_last($this->points)];
         foreach ($this->points as $point) {
-            if ($lastPoint == null) {
-                $lastPoint = $point;
-                continue;
-            }
             if ($this->doLinesCrossLatitude($lastPoint, $point, $targetLatitude)) {
                 $longitudeHits[] = $this->findInterceptLongitude($lastPoint, $point, $targetLatitude);
             }
@@ -40,7 +37,7 @@ class Polygon
         $hitsBefore = 0;
         $hitsAfter = 0;
 
-        foreach($longitudeHits as $hit) {
+        foreach ($longitudeHits as $hit) {
             if ($hit <= $targetPoint->getLongitude()) {
                 $hitsBefore++;
             } elseif ($hit >= $targetPoint->getLongitude()) {
@@ -57,7 +54,8 @@ class Polygon
         throw new \Exception("Something weird happened.  Fixme");
     }
 
-    private function doLinesCrossLatitude(Point $point1, Point $point2, float $latitude): bool {
+    private function doLinesCrossLatitude(Point $point1, Point $point2, float $latitude): bool
+    {
         if ($point1->getLatitude() >= $latitude && $point2->getLatitude() <= $latitude) {
             return true;
         } elseif ($point2->getLatitude() >= $latitude && $point1->getLatitude() <= $latitude) {
@@ -74,7 +72,7 @@ class Polygon
         }
 
         $slope = ($point2->getLatitude() - $point1->getLatitude()) / ($point2->getLongitude() - $point1->getLongitude());
-        $b = $point1->getLatitude() - ($slope*$point1->getLongitude());
+        $b = $point1->getLatitude() - ($slope * $point1->getLongitude());
 
         return ($latitude + $b) / $slope;
     }
