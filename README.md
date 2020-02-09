@@ -8,7 +8,7 @@
 [![License](https://poser.pugx.org/thtroyer/noaa-cap-alerts/license)](https://packagist.org/packages/thtroyer/noaa-cap-alerts)
 
 ## What is this?
-This is a PHP 7.1+ library to make it easier to fetch and use weather alerts created by NOAA.
+This is a PHP 7.3+ library to make it easier to fetch and use weather alerts created by NOAA.
 
 ## Setup
 
