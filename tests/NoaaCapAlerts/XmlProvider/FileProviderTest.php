@@ -1,9 +1,12 @@
 <?php
 
-namespace NoaaCapAlerts\XmlProvider;
+namespace NoaaCapAlerts\Tests\NoaaCapAlerts\XmlProvider;
 
 
-class FileProviderTest extends \PHPUnit\Framework\TestCase
+use NoaaCapAlerts\XmlProvider\FileProvider;
+use PHPUnit\Framework\TestCase;
+
+class FileProviderTest extends TestCase
 {
 
     public function testGetXml()

@@ -1,8 +1,11 @@
 <?php
 
-namespace NoaaCapAlerts;
+namespace NoaaCapAlerts\Tests\NoaaCapAlerts;
 
-class NoaaAlertsTest extends \PHPUnit\Framework\TestCase
+use NoaaCapAlerts\NoaaAlerts;
+use PHPUnit\Framework\TestCase;
+
+class NoaaAlertsTest extends TestCase
 {
     public function testGetAlerts()
     {

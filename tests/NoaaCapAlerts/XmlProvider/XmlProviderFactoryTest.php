@@ -1,8 +1,13 @@
 <?php
 
-namespace NoaaCapAlerts\XmlProvider;
+namespace NoaaCapAlerts\Tests\NoaaCapAlerts\XmlProvider;
 
-class XmlProviderFactoryTest extends \PHPUnit\Framework\TestCase
+use NoaaCapAlerts\XmlProvider\DownloaderProvider;
+use NoaaCapAlerts\XmlProvider\FileProvider;
+use NoaaCapAlerts\XmlProvider\XmlProviderFactory;
+use PHPUnit\Framework\TestCase;
+
+class XmlProviderFactoryTest extends TestCase
 {
     public function testGetDownloadProvider()
     {

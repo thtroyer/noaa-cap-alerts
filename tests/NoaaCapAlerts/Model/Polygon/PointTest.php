@@ -1,10 +1,11 @@
 <?php
 
-namespace NoaaCapAlerts\Model\Polygon;
+namespace NoaaCapAlerts\Tests\NoaaCapAlerts\Model\Polygon;
 
 use NoaaCapAlerts\Model\Polygon\Point;
+use PHPUnit\Framework\TestCase;
 
-class PointTest extends \PHPUnit\Framework\TestCase
+class PointTest extends TestCase
 {
 
     public function testConstructorAndGetters()

@@ -4,10 +4,14 @@ namespace {
     $mockFileGetContents = false;
 }
 
-namespace NoaaCapAlerts\XmlProvider {
+namespace NoaaCapAlerts\Tests\NoaaCapAlerts\XmlProvider {
     /*
      * Mock file_get_contents, only if global var gets set
      */
+
+    use NoaaCapAlerts\XmlProvider\DownloaderProvider;
+    use PHPUnit\Framework\TestCase;
+
     function file_get_contents($filename, $use_include_path = null, $context = null)
     {
         global $mockFileGetContents;
@@ -18,7 +22,7 @@ namespace NoaaCapAlerts\XmlProvider {
         return call_user_func_array('\file_get_contents', func_get_args());
     }
 
-    class DownloaderProviderTest extends \PHPUnit\Framework\TestCase
+    class DownloaderProviderTest extends TestCase
     {
         public function testGetXml()
         {

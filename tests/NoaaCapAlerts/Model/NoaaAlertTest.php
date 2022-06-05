@@ -1,10 +1,11 @@
 <?php
 
-namespace NoaaCapAlerts\Tests\Model;
+namespace NoaaCapAlerts\Tests\NoaaCapAlerts\Model;
 
 use NoaaCapAlerts\Model\NoaaAlert;
+use PHPUnit\Framework\TestCase;
 
-class NoaaAlertTest extends \PHPUnit\Framework\TestCase
+class NoaaAlertTest extends TestCase
 {
     /**
      * @dataProvider alertDataProvider

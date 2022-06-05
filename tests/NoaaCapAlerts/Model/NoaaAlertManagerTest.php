@@ -1,13 +1,15 @@
 <?php
 
-namespace NoaaCapAlerts\Model;
+namespace NoaaCapAlerts\Tests\NoaaCapAlerts\Model;
 
+use NoaaCapAlerts\Model\NoaaAlert;
+use NoaaCapAlerts\Model\NoaaAlertFactory;
 use NoaaCapAlerts\Model\Polygon\PolygonFactory;
 use NoaaCapAlerts\Parser\NoaaIndexParser;
 use NoaaCapAlerts\XmlProvider\XmlProvider;
-use NoaaCapAlerts\Model\Polygon\Polygon;
+use PHPUnit\Framework\TestCase;
 
-class NoaaAlertManagerTest extends \PHPUnit\Framework\TestCase
+class NoaaAlertManagerTest extends TestCase
 {
 
     public function testGetAlerts()

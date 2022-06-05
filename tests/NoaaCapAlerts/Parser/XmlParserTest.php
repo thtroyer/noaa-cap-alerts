@@ -1,11 +1,12 @@
 <?php
 
-namespace NoaaCapAlerts\Tests\Parser;
+namespace NoaaCapAlerts\Tests\NoaaCapAlerts\Parser;
 
-use NoaaCapAlerts\Parser\XmlParser;
 use NoaaCapAlerts\Exceptions\XmlParseException;
+use NoaaCapAlerts\Parser\XmlParser;
+use PHPUnit\Framework\TestCase;
 
-class XmlParserTest extends \PHPUnit\Framework\TestCase
+class XmlParserTest extends TestCase
 {
 
     /**

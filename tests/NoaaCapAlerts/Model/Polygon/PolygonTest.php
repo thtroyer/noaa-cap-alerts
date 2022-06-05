@@ -1,8 +1,12 @@
 <?php
 
-namespace NoaaCapAlerts\Model\Polygon;
+namespace NoaaCapAlerts\Tests\NoaaCapAlerts\Model\Polygon;
 
-class PolygonTest extends \PHPUnit\Framework\TestCase
+use NoaaCapAlerts\Model\Polygon\Point;
+use NoaaCapAlerts\Model\Polygon\Polygon;
+use PHPUnit\Framework\TestCase;
+
+class PolygonTest extends TestCase
 {
 
     public function testPointInSimplePolygon()
