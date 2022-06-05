@@ -6,29 +6,29 @@ use NoaaCapAlerts\Model\Polygon\Polygon;
 
 class NoaaAlert
 {
-    protected $idString;
-    protected $idKey;
-    protected $updatedTime;
-    protected $publishedTime;
-    protected $authorName;
-    protected $title;
-    protected $link;
-    protected $summary;
-    protected $capEvent;
-    protected $capEffectiveTime;
-    protected $capExpiresTime;
-    protected $capStatus;
-    protected $capMsgType;
-    protected $capCategory;
-    protected $capUrgencyExpected;
-    protected $capSeverity;
-    protected $capCertainty;
-    protected $capAreaDesc;
-    protected $capPolygon;
-    protected $capGeo;
-    protected $capGeoString;
-    protected $vtec;
-    protected $polygon;
+    protected string $idString;
+    protected string $idKey;
+    protected \DateTime $updatedTime;
+    protected \DateTime $publishedTime;
+    protected string $authorName;
+    protected string $title;
+    protected string $link;
+    protected string $summary;
+    protected string $capEvent;
+    protected ?\DateTime $capEffectiveTime;
+    protected ?\DateTime $capExpiresTime;
+    protected string $capStatus;
+    protected string $capMsgType;
+    protected string $capCategory;
+    protected string $capUrgencyExpected;
+    protected string $capSeverity;
+    protected string $capCertainty;
+    protected string $capAreaDesc;
+    protected array $capPolygon;
+    protected array $capGeo;
+    protected string $capGeoString;
+    protected string $vtec;
+    protected Polygon $polygon;
 
     public function __construct(string $idString,
                                 string $idKey,
@@ -86,7 +86,7 @@ class NoaaAlert
 
     public function toArray(): array
     {
-        return array(
+        return [
             'idString' => $this->idString,
             'idKey' => $this->idKey,
             'updatedTime' => $this->updatedTime,
@@ -109,7 +109,7 @@ class NoaaAlert
             'capGeo' => $this->capGeo,
             'capGeoString' => $this->capGeoString,
             'vtec' => $this->vtec,
-        );
+        ];
     }
 
     public function getIdString(): string

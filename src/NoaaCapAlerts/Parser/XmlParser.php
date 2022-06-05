@@ -7,14 +7,17 @@ use NoaaCapAlerts\Exceptions\XmlParseException;
 class XmlParser
 {
 
-    protected $output;
+    protected array $output;
 
     public function __construct()
     {
         $this->output = array();
     }
 
-    public function getArrayFromXml($xml)
+    /**
+     * @throws XmlParseException
+     */
+    public function getArrayFromXml($xml): array
     {
         $xmlParser = xml_parser_create();
         xml_set_object($xmlParser, $this);
@@ -42,7 +45,7 @@ class XmlParser
             "attrs" => $attrs
         );
 
-        array_push($this->output, $tag);
+        $this->output[] = $tag;
     }
 
     protected function tagClosed($parser, $name)

@@ -4,7 +4,7 @@ namespace NoaaCapAlerts\Parser;
 
 class NoaaIndexParser
 {
-    protected $xmlParser;
+    protected XmlParser $xmlParser;
 
     public function __construct(?XmlParser $xmlParser = null)
     {
@@ -154,22 +154,27 @@ class NoaaIndexParser
         return $geoLocArray;
     }
 
+    /**
+     * idString contains important data in it as well.
+     * Use it to generate a unique key for the alert.
+     *
+     * Example:
+     *    alerts.weather.gov/cap/wwacapget.php?x=AK12539092A414.WinterWeatherAdvisory.125390A09AB0AK.AFGWSWNSB.a59f94b5da45867f6f45272a36df61cc
+     *
+     * The pieces of idString appears to be
+     * 0. State abrev + some strange timestamp format
+     * 1. Type
+     * 2. Another timestamp with state abrev.
+     * 3. ??
+     * 4. Hash of some data (32 bit)
+     *
+     * Since 0,1,2, and 3 aren't unique on their own, but it looks like 4 is, I'll plan on using 0 and 4 just to be sure.
+     *
+     * @param string $idString
+     * @return string
+     */
     protected function generateIdKey(string $idString): string
     {
-        // idString contains important data in it as well.
-        // Use it to generate a unique key for the alert.
-        //
-        // Example:
-        //    alerts.weather.gov/cap/wwacapget.php?x=AK12539092A414.WinterWeatherAdvisory.125390A09AB0AK.AFGWSWNSB.a59f94b5da45867f6f45272a36df61cc
-        //
-        // The pieces of idString appears to be
-        // 0. State abrev + some strange timestamp format
-        // 1. Type
-        // 2. Another timestamp with state abrev.
-        // 3. ??
-        // 4. Hash of some data (32 bit)
-        //
-        // Since 0,1,2, and 3 aren't unique on their own, but it looks like 4 is, I'll plan on using 0 and 4 just to be sure.
 
         $idParts = explode('=', $idString);
         $idSplit = explode('.', $idParts[1]);
@@ -178,12 +183,10 @@ class NoaaIndexParser
         return $idKey;
     }
 
-    /**
-     * @return array
-     */
+
     protected function getDefaultAlertValues(): array
     {
-        $parsedAlert = array(
+        return array(
             'idString' => '',
             'idKey' => '',
             'updatedDateTime' => null,
@@ -211,7 +214,6 @@ class NoaaIndexParser
             'capGeoString' => '',
             'vtec' => '',
         );
-        return $parsedAlert;
     }
 
     protected function parseGeoArray(array $element): array
@@ -240,11 +242,7 @@ class NoaaIndexParser
     {
         $elementName = $element['name'];
         $elementAttrs = $element['attrs'];
-        if (isset($element['tagData'])) {
-            $elementData = $element['tagData'];
-        } else {
-            $elementData = '';
-        }
+        $elementData = $element['tagData'] ?? '';
         return array($elementName, $elementAttrs, $elementData);
     }
 

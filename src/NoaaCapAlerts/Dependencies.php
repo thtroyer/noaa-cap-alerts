@@ -11,7 +11,6 @@ use Pimple\Container;
 
 class Dependencies extends Container
 {
-    protected $container;
 
     public function __construct()
     {

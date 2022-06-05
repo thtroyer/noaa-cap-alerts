@@ -4,12 +4,8 @@ namespace NoaaCapAlerts\Model\Polygon;
 
 class Polygon
 {
-    private $points;
+    private array $points;
 
-    /**
-     * Polygon constructor.
-     * @param array $points
-     */
     function __construct(array $points = null)
     {
         if ($points === null) {
@@ -19,6 +15,9 @@ class Polygon
         $this->points = $points;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function isPointInPolygon(Point $targetPoint): bool
     {
         $targetLatitude = $targetPoint->getLatitude();

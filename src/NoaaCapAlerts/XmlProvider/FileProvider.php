@@ -4,7 +4,7 @@ namespace NoaaCapAlerts\XmlProvider;
 
 class FileProvider implements XmlProvider
 {
-    protected $filePath;
+    protected string $filePath;
 
     public function __construct(string $filePath = '')
     {

@@ -4,7 +4,7 @@ namespace NoaaCapAlerts;
 
 class NoaaAlerts
 {
-    private $dependencyContainer;
+    private Dependencies $dependencyContainer;
 
     public function __construct()
     {

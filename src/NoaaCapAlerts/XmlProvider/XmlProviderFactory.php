@@ -4,7 +4,7 @@ namespace NoaaCapAlerts\XmlProvider;
 
 class XmlProviderFactory
 {
-    protected $localFilePath;
+    protected ?string $localFilePath;
 
     public function __construct(string $localFilePath = null)
     {

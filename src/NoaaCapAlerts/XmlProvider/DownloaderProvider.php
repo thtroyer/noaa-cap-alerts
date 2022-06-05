@@ -4,7 +4,7 @@ namespace NoaaCapAlerts\XmlProvider;
 
 class DownloaderProvider implements XmlProvider
 {
-    protected $indexUrl;
+    protected string $indexUrl;
 
     public function __construct(string $indexUrl = 'http://alerts.weather.gov/cap/us.php?x=0')
     {
@@ -20,9 +20,8 @@ class DownloaderProvider implements XmlProvider
         );
 
         $context = stream_context_create($options);
-        $xml = file_get_contents($this->indexUrl, false, $context);
 
-        return $xml;
+        return file_get_contents($this->indexUrl, false, $context);
     }
 }
 

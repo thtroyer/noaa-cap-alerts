@@ -1,25 +1,25 @@
 {
-    "name": "thtroyer/noaa-cap-alerts",
-    "type": "library",
-    "description": "Parser for NOAA CAP files.",
-    "homepage": "https://github.com/thtroyer/noaa-cap-alerts",
-    "license": "MIT",
-    "require": {
-        "php": ">=7.4 || >=8.0",
-        "pimple/pimple": "~3.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~9.5"
-    },
-    "autoload": {
-        "psr-4": {
-            "NoaaCapAlerts\\": "src/NoaaCapAlerts"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "NoaaCapAlerts\\Tests\\": "tests/"
-        }
+  "name": "thtroyer/noaa-cap-alerts",
+  "type": "library",
+  "description": "Parser for NOAA CAP files.",
+  "homepage": "https://github.com/thtroyer/noaa-cap-alerts",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.4 || >=8.0",
+    "pimple/pimple": "~3.0",
+    "ext-xml": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "NoaaCapAlerts\\": "src/NoaaCapAlerts"
     }
-
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "NoaaCapAlerts\\Tests\\": "tests/"
+    }
+  }
 }
