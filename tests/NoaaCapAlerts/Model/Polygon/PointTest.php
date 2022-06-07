@@ -13,7 +13,7 @@ class PointTest extends TestCase
         $longitude = 34.2;
         $latitude = 11;
 
-        $point = new Point($longitude, $latitude);
+        $point = Point::fromDecimalDegrees($latitude, $longitude);
 
         $this->assertEquals($longitude, $point->getLongitude());
         $this->assertEquals($latitude, $point->getLatitude());

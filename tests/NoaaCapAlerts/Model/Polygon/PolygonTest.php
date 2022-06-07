@@ -11,14 +11,14 @@ class PolygonTest extends TestCase
 
     public function testPointInSimplePolygon()
     {
-        $point = new Point(2.5, 2.5);
+        $point = Point::fromDecimalDegrees(2.5, 2.5);
 
         $polygon = new Polygon(
             array(
-                new Point(0, 0),
-                new Point(5, 0),
-                new Point(5, 5),
-                new Point(0, 5),
+                Point::fromDecimalDegrees(0, 0),
+                Point::fromDecimalDegrees(5, 0),
+                Point::fromDecimalDegrees(5, 5),
+                Point::fromDecimalDegrees(0, 5),
             )
         );
 
@@ -27,15 +27,15 @@ class PolygonTest extends TestCase
 
     public function testPointNotInSimplePolygon()
     {
-        $point = new Point(6, 2.5);
+        $point = Point::fromDecimalDegrees(6, 2.5);
 
         $polygon = new Polygon(
             array(
-                new Point(0, 0),
-                new Point(5, 0),
-                new Point(5, 5),
-                new Point(0, 5),
-                new Point(0, 0),
+                Point::fromDecimalDegrees(0, 0),
+                Point::fromDecimalDegrees(5, 0),
+                Point::fromDecimalDegrees(5, 5),
+                Point::fromDecimalDegrees(0, 5),
+                Point::fromDecimalDegrees(0, 0),
             )
         );
 

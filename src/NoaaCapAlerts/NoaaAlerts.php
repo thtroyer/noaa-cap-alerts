@@ -17,4 +17,11 @@ class NoaaAlerts
 
         return $noaaAlertManager->getAlerts();
     }
+
+    public static function fetchAlerts(): array
+    {
+        $noaaAlerts = new NoaaAlerts();
+
+        return $noaaAlerts->getAlerts();
+    }
 }
